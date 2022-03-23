@@ -15,7 +15,9 @@ public class JpaMain {
 
 		try {
 			tx.begin(); // 트랜잭션 - 시작.
+
 			logic(em); // 로직 실행.
+
 			tx.commit(); // 트랜잭션 - 커밋.
 		} catch (Exception e) {
 			tx.rollback(); // 트랜잭션 - 롤백.
