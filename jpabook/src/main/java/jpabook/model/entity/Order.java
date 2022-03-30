@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,6 +33,10 @@ public class Order {
 	// mappedBy : 반대쪽 매핑의 필드 이름을 값으로 준다.
 	@OneToMany(mappedBy = "order")
 	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+
+	@OneToOne
+	@JoinColumn(name = "DELIVERY_ID")
+	private Delivery delivery; // 배송정보
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date orderDate; // 주문시간
@@ -53,6 +58,12 @@ public class Order {
 		orderItems.add(orderItem);
 		orderItem.setOrder(this);
 	}
+
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+		delivery.setOrder(this);
+	}
+
 	public Long getId() {
 		return id;
 	}
