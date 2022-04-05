@@ -1,6 +1,7 @@
 package jpabook.model.entity;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +22,10 @@ public class Delivery {
 	private String city;
 	private String street;
 	private String zipcode;
+
+	// 6. 값 타입 매핑 추가
+	@Embedded
+	private Address address;
 
 	@Enumerated(EnumType.STRING)
 	private DeliveryStatus status;

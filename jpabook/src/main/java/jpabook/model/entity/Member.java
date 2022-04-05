@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,6 +22,11 @@ public class Member extends BaseEntity{
 	private String city;
 	private String street;
 	private String zipcode;
+
+	// 6. 값 타입 매핑 추가
+	// 주소 정보에 필드나 로직이 추가되면 Address 값 타입만 변경하면 된다.
+	@Embedded
+	private Address address;
 
 	// mappedBy : 반대쪽 매핑의 필드 이름을 값으로 준다.
 	@OneToMany(mappedBy = "member")
